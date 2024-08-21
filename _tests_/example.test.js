@@ -52,6 +52,16 @@ describe('Calculator class', () => {
       expect(calculator.add(0, 5)).toBe(5);
     });
 
+    test('test with sleep', async () => {
+       // Perform some setup or actions
+      console.log('sleep');
+
+       // Sleep for 1000 milliseconds (1 second)
+      await new Promise(resolve => setTimeout(resolve, 10000));
+      console.log('waken');
+
+  });
+
     test('adds two large numbers', () => {
       expect(calculator.add(1000000, 2000000)).toBe(3000000);
     });
@@ -117,6 +127,17 @@ describe('Calculator class', () => {
     test('divides zero by a positive number', () => {
       expect(calculator.divide(0, 5)).toBe(0);
     });
+
+    
+    test('test with sleep again', async () => {
+       // Perform some setup or actions
+      console.log('sleep again');
+
+       // Sleep for 1000 milliseconds (1 second)
+      await new Promise(resolve => setTimeout(resolve, 10000));
+      console.log('waken again');
+
+  });
 
     test('divides two large numbers', () => {
       expect(calculator.divide(1000000, 1000)).toBe(1000);
