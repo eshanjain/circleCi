@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:3.9  # You can choose an image that suits your needs, e.g., Ubuntu, Python, etc.
+      - image: circleci/python:3.9  # Choose an image that suits your needs
 
     working_directory: ~/repo
 
@@ -15,20 +15,32 @@ jobs:
           command: |
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
             export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             nvm install 14
             nvm use 14
+            # Ensure node is installed
+            node -v
 
       - run:
           name: Check Node.js version
           command: |
             export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             node -v
 
-     - run:
-        name: Run tests
-        command: npm test
+      - run:
+          name: Install npm dependencies
+          command: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            npm install
+
+      - run:
+          name: Run tests
+          command: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            npm test
 
 workflows:
   version: 2
