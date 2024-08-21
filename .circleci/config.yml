@@ -5,8 +5,6 @@ jobs:
     docker:
       - image: circleci/python:3.9  # Choose an image that suits your needs
 
-    working_directory: ~/repo
-
     steps:
       - checkout
 
