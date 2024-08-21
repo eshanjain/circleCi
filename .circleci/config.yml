@@ -3,27 +3,29 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:3.9  # Replace with your preferred Docker image
+      - image: circleci/python:3.9  # You can choose an image that suits your needs, e.g., Ubuntu, Python, etc.
+
     working_directory: ~/repo
 
     steps:
       - checkout
 
       - run:
-          name: Install dependencies
+          name: Install nvm and Node.js
           command: |
-            python -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm install 14
+            nvm use 14
 
       - run:
-          name: Run tests
+          name: Check Node.js version
           command: |
-            . venv/bin/activate
-            pytest  # Or your preferred test command
+            node -v
 
 workflows:
   version: 2
-  build:
+  build_and_test:
     jobs:
       - build
