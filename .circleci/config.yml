@@ -5,6 +5,8 @@ jobs:
     docker:
       - image: circleci/python:3.9  # Choose an image that suits your needs
 
+    working_directory: ~/repo
+
     steps:
       - checkout
 
@@ -32,6 +34,8 @@ jobs:
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             npm install
+            pwd
+            ls -l
 
       - run:
           name: Run tests
