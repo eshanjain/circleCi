@@ -36,6 +36,9 @@ jobs:
             npm install
             pwd
             ls -l
+      - run:
+          name: Install Jest
+          command: npm install --save-dev jest
 
       - run:
           name: Run tests
