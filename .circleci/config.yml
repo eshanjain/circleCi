@@ -46,6 +46,8 @@ jobs:
       - run:
           name: Split tests across containers
           command: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             # Save a list of test files
             mkdir -p test-results
             npx jest --listTests | circleci tests split --split-by=filesize > test-results/test-files-size.txt
