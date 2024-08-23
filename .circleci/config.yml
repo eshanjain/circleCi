@@ -56,7 +56,7 @@ jobs:
             cat test-results/test-files-size.txt
             cat test-results/test-files-name.txt
 
-     - run:
+      - run:
           name: Run Jest tests in parallel
           command: |
             export NVM_DIR="$HOME/.nvm"
