@@ -11,6 +11,14 @@ jobs:
       - checkout
 
       - run:
+          name: Print CircleCI Information
+          command: |
+            echo "Job Name: $CIRCLE_JOB"
+            echo "Build Number: $CIRCLE_BUILD_NUM"
+            echo "Pipeline ID: $CIRCLE_PIPELINE_ID"
+            echo "Workflow ID: $CIRCLE_WORKFLOW_ID"
+
+      - run:
           name: Install nvm and Node.js
           command: |
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
