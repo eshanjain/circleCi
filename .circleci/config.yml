@@ -17,6 +17,8 @@ jobs:
             echo "Build Number: $CIRCLE_BUILD_NUM"
             echo "Pipeline ID: $CIRCLE_PIPELINE_ID"
             echo "Workflow ID: $CIRCLE_WORKFLOW_ID"
+            echo "Parallelism Index: $CIRCLE_NODE_INDEX"
+            echo "Total Nodes: $CIRCLE_NODE_TOTAL"
 
       - run:
           name: Install nvm and Node.js
