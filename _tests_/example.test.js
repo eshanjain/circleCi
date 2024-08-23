@@ -58,8 +58,6 @@ describe('Calculator class', () => {
 
        // Sleep for 1000 milliseconds (1 second)
       await new Promise(resolve => setTimeout(resolve, 10000));
-      console.log('waken');
-
   });
 
     test('adds two large numbers', () => {
@@ -135,7 +133,6 @@ describe('Calculator class', () => {
 
        // Sleep for 1000 milliseconds (1 second)
       await new Promise(resolve => setTimeout(resolve, 10000));
-      console.log('waken again');
 
   });
 
