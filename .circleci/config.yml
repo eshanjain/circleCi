@@ -55,13 +55,19 @@ jobs:
             npx jest --listTests | circleci tests split --split-by=name > test-results/test-files-name.txt
             cat test-results/test-files-size.txt
             cat test-results/test-files-name.txt
-            
-      - run:
-          name: Run tests
+
+     - run:
+          name: Run Jest tests in parallel
           command: |
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-            npm test
+            cat test-results/test-files.txt | xargs npx jest --runInBand --coverage
+            
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: coverage
+          destination: coverage
 
 workflows:
   version: 2
