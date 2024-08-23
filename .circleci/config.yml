@@ -6,7 +6,6 @@ jobs:
       - image: circleci/python:3.9  # Choose an image that suits your needs
 
     working_directory: ~/repo
-
     steps:
       - checkout
 
@@ -44,6 +43,16 @@ jobs:
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             npm install --save-dev jest
 
+      - run:
+          name: Split tests across containers
+          command: |
+            # Save a list of test files
+            mkdir -p test-results
+            npx jest --listTests | circleci tests split --split-by=filesize > test-results/test-files-size.txt
+            npx jest --listTests | circleci tests split --split-by=filename > test-results/test-files-name.txt
+            cat test-results/test-files-size.txt
+            cat test-results/test-files-name.txt
+            
       - run:
           name: Run tests
           command: |
