@@ -51,7 +51,7 @@ jobs:
             # Save a list of test files
             mkdir -p test-results
             npx jest --listTests | circleci tests split --split-by=filesize > test-results/test-files-size.txt
-            npx jest --listTests | circleci tests split --split-by=filename > test-results/test-files-name.txt
+            npx jest --listTests | circleci tests split --split-by=name > test-results/test-files-name.txt
             cat test-results/test-files-size.txt
             cat test-results/test-files-name.txt
             
